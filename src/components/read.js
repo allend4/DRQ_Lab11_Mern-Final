@@ -4,8 +4,9 @@ import '../App.css';
 
 export class Read extends React.Component{
 
-    state = {
-        movies:[
+    // obect state stores data
+    state = { 
+        movies:[ // state contains object movies / JSON format
             {
             "Title": "Avengers: Infinity War",
             "Year": "2018",
@@ -30,11 +31,12 @@ export class Read extends React.Component{
             ]            
     };
 
+    /* render HTML*/
     render(){
         return(
             <div>
                 <h3>Hello from Read Component</h3>
-                <Movies movies={this.state.movies}></Movies>
+                <Movies movies={this.state.movies}></Movies> {/* passing object movies. */}
             </div>
         );
     }
