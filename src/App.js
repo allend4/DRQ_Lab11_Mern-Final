@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Content } from './components/content';
-import { Footer } from './components/footer';
-import { Header } from './components/header';
+import { Create } from './components/create'; // changed from header - calls create
+import { Read } from './components/read'; // changed from footer - calls read
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
@@ -34,8 +34,8 @@ class App extends React.Component {
 
           <Switch>
             <Route path='/' component={Content} exact></Route>
-            <Route path='/read' component={Header} ></Route>
-            <Route path='/create' component={Footer} ></Route>
+            <Route path='/create' component={Create} ></Route>
+            <Route path='/read' component={Read} ></Route>
           </Switch>
 
           {/*<Header></Header>
