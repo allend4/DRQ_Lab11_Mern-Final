@@ -12,6 +12,5 @@ export class Movies extends React.Component{
             //   <h3>Hello from Movies Component</h3>
             //    <MovieItem></MovieItem>
             //</div>
-    }
-
-}
+    } // END render
+}// END class Movies

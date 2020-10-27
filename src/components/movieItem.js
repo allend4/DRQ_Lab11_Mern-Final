@@ -26,7 +26,6 @@ export class MovieItem extends React.Component {
                 </Card>
 
             </div>
-        );
-    }
-
-}
+        );// END return
+    }// END render
+}// END class MovieItem

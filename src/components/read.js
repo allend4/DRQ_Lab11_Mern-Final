@@ -36,16 +36,16 @@ export class Read extends React.Component{
     };
 
     componentDidMount(){
-    axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032') // retrieve data from net
+    axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032') // retrieve data from internet/server
         .then(response => {
             this.setState({movies: response.data.Search}) // furfilled path
         })
         .catch(
             (error) => {
-                console.log(error);
+                console.log(error); // statement executed if exception is thrown
             }
         );
-    }
+    }// END componentDidMount
 
     /* render HTML*/
     render(){
@@ -56,5 +56,4 @@ export class Read extends React.Component{
             </div>
         );
     }
-
-}
+}// END class Read

@@ -4,14 +4,11 @@ import '../App.css';
 export class Content extends React.Component {
 
     render() {
-
         return (
             <div className="App">
                 <h1>Hello World!</h1>
                 <h2>It is {new Date().toLocaleTimeString()}.</h2> {/* Method returns date */}
             </div>
-        );
-
-    }
-
-}
+        );// END return
+    }// END render
+}// END class Content
