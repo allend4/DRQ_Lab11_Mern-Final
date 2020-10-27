@@ -1,13 +1,16 @@
 import React from 'react';
 import { Movies } from './movies';
 import '../App.css';
+import axios from 'axios';
 
 export class Read extends React.Component{
 
     // obect state stores data
     state = { 
         movies:[ // state contains object movies / JSON format
-            {
+            
+            // getting rid of JSON data programmed in. we want to pull it from online API
+            /*{
             "Title": "Avengers: Infinity War",
             "Year": "2018",
             "imdbID": "tt4154756",
@@ -27,9 +30,22 @@ export class Read extends React.Component{
             "imdbID": "tt0472062",
             "Type": "movie",
             "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4._V1_SX300.jpg"
-            }
+            }*/
+
             ]            
     };
+
+    componentDidMount(){
+    axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032') // retrieve data from net
+        .then(response => {
+            this.setState({movies: response.data.Search}) // furfilled path
+        })
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
 
     /* render HTML*/
     render(){
