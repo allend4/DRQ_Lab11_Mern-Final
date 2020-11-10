@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import axios from 'axios';
 
 export class Create extends React.Component{
 
@@ -34,6 +35,21 @@ export class Create extends React.Component{
         + '\ntitle:  ' + this.state.Title
         + '\nYear: ' + this.state.Year 
         + '\nPoster: ' + this.state.Poster);
+
+        const newMovie = { // newMovie object
+            title: this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+
+        axios.post('http://localhost:4000/api/movies', newMovie) // read data/send object to server
+        .then((res) => {
+            console.log(res); // responce
+        })
+        .catch((err) => {
+            console.log(err); // error
+        });
+
     }// END onSubmit
 
     render(){ // method of react - tells react what to display

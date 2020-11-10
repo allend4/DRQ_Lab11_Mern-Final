@@ -7,38 +7,16 @@ export class Read extends React.Component{
 
     // obect state stores data
     state = { 
-        movies:[ // state contains object movies / JSON format
-            
-            // getting rid of JSON data programmed in. we want to pull it from online API
-            /*{
-            "Title": "Avengers: Infinity War",
-            "Year": "2018",
-            "imdbID": "tt4154756",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-            },
-            {
-            "Title": "Captain America: Civil War",
-            "Year": "2016",
-            "imdbID": "tt3498820",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-            },
-            {
-            "Title": "Charlie Wilson's War",
-            "Year": "2007",
-            "imdbID": "tt0472062",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMTgwMDgwMDc4MF5BMl5BanBnXkFtZTYwOTU3MDM4._V1_SX300.jpg"
-            }*/
-
-            ]            
+        movies:[]            
     };
 
+    //CORS policy blocked. browser stopped request (security) resource on different domain (3000/4000)- NEEDS FIXING
+    //Server adjustment - install cors and package to allow access server.js (CORS policy)
+
     componentDidMount(){
-    axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032') // retrieve data from internet/server
+    axios.get('http://localhost:4000/api/movies') // retrieve data from server
         .then(response => {
-            this.setState({movies: response.data.Search}) // furfilled path
+            this.setState({movies: response.data.mymovies}) // furfilled path // search changed to mymovies
         })
         .catch(
             (error) => {

@@ -17,7 +17,7 @@ export class MovieItem extends React.Component {
                     <Card.Header>{this.props.movie.Title}</Card.Header> {/* props how you pass data from one comp to another */}
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
-                            <img src={this.props.movie.Poster} width="200" height="300"></img>
+                            <img src={this.props.movie.Poster} width="200" height="300" alt=" "></img>
                             <footer className="blockquote-footer">
                                 {this.props.movie.Year}
                             </footer>
