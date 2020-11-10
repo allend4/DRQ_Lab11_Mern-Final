@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/api/movies', (req, res) =>{
+app.get('/api/movies', (req, res) =>{ // GET method
     const movies = [ // movies json array
             {
             "Title":"Avengers: Infinity War",
@@ -55,8 +55,7 @@ app.get('/api/movies', (req, res) =>{
     res.json({mymovies:movies}) //passing down object
 })
 
-app.post('/api/movies', (req, res) =>{ // post
-    console.log('Movie Recieved!');
+app.post('/api/movies', (req, res) =>{ // POST method
     console.log(req.body.title);
     console.log(req.body.year);
     console.log(req.body.poster);

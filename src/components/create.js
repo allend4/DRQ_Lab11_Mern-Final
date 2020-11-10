@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import axios from 'axios';
+import axios from 'axios'; // utils/API.js - axios config
 
 export class Create extends React.Component{
 
