@@ -3,6 +3,7 @@ const app = express()
 const port = 4000 // changed as react uses 3000
 const cors = require('cors'); // cors need installing and will allow script to request data off server
 const bodyParser = require("body-parser") // // body-parser is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.bod
+const mongoose = require('mongoose'); // getting-started.js mongoose
 
 // cors
 app.use(cors());
@@ -20,45 +21,43 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/api/movies', (req, res) =>{ // GET method
-    const movies = [ // movies json array
-            {
-            "Title":"Avengers: Infinity War",
-            "Year":"2018",
-            "imdbID":"tt4154756",
-            "Type":"movie",
-            "Poster":"https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-            },
-            {
-            "Title":"Captain America: Civil War",
-            "Year":"2016",
-            "imdbID":"tt3498820",
-            "Type":"movie",
-            "Poster":"https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-            },
-            {
-            "Title":"World War Z",
-            "Year":"2013",
-            "imdbID":"tt0816711",
-            "Type":"movie",
-            "Poster":"https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-            },
-            {
-            "Title":"War of the Worlds",
-            "Year":"2005",
-            "imdbID":"tt0407304",
-            "Type":"movie",
-            "Poster":"https://m.media-amazon.com/images/M/MV5BNDUyODAzNDI1Nl5BMl5BanBnXkFtZTcwMDA2NDAzMw@@._V1_SX300.jpg"
-            }
-        ];   
+// connect to MongoDB database
+const strMongoDB = 'mongodb+srv://admin:admin@cluster0.eozna.mongodb.net/mymovies?retryWrites=true&w=majority'; //connect to cluster MongoDB
+mongoose.connect(strMongoDB, {useNewUrlParser: true}); // connect to database
 
-    res.json({mymovies:movies}) //passing down object
+const Schema = mongoose.Schema; // schema
+
+const movieSchema = new Schema({  // type of schema
+    Title:String,
+    Year:String,
+    Poster:String
+}) // what doscuments in database will look like
+
+const movieModel = mongoose.model("movie", movieSchema); // data model schemanode
+
+app.get('/api/movies', (req, res) =>{ // GET method
+
+    movieModel.find((err, data) => {
+        res.json(data); 
+    }) 
+})
+
+app.get('/api/movies/:id', (req, res) => {
+    console.log(req.params.id); // log id to console
+   
+    movieModel.findById(req.params.id, (err, data) => {  // take id and search database
+        res.json(data); // send data back
+    })
 })
 
 app.post('/api/movies', (req, res) =>{ // POST method
-    console.log(req.body.title);
-    console.log(req.body.year);
-    console.log(req.body.poster);
+    console.log(req.body);
+   
+    movieModel.create({ // create new record in database
+        Title:req.body.title,
+        Year:req.body.year,
+        Poster:req.body.poster
+    }) 
 })
 
 app.listen(port, () => { // app listen at port 4000. used to bind and listen the connections on the specified host and port
