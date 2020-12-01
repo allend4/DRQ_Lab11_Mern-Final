@@ -30,6 +30,7 @@ const Schema = mongoose.Schema; // schema
 const movieSchema = new Schema({  // type of schema
     Title: String,
     Year: String,
+    
     Poster: String
 }) // what doscuments in database will look like
 
@@ -47,6 +48,14 @@ app.get('/api/movies/:id', (req, res) => {
 
     movieModel.findById(req.params.id, (err, data) => {  // take id and search database
         res.json(data); // send data back
+    })
+})
+
+app.put('/api/movies/:id', (req, res) => {
+    console.log("Update: " + req.body);
+
+    movieModel.findByIdAndUpdate(req.params.id, req.body, (err, data) => {
+        res.send(data);
     })
 })
 
@@ -68,6 +77,10 @@ app.post('/api/movies', (req, res) => { // POST method
         Year: req.body.year,
         Poster: req.body.poster
     })
+    .then(() => {
+        res.send('item created')
+    })
+    .catch();
 })
 
 app.listen(port, () => { // app listen at port 4000. used to bind and listen the connections on the specified host and port

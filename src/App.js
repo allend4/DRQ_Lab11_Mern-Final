@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Edit } from './components/edit'; // calls edit
 
 class App extends React.Component {
 
@@ -36,6 +37,7 @@ class App extends React.Component {
             <Route path='/' component={Content} exact></Route>
             <Route path='/create' component={Create} ></Route>
             <Route path='/read' component={Read} ></Route>
+            <Route path='/edit/:id' component={Edit}></Route> 
           </Switch>
 
           {/*<Header></Header>

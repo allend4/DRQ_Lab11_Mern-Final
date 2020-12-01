@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button' // import button from bootstrap 
 import axios from 'axios' // http client
+import {Link} from 'react-router-dom' // create a link between pages
 
 export class MovieItem extends React.Component {
 
@@ -40,8 +41,9 @@ export class MovieItem extends React.Component {
                                 {this.props.movie.Year}
                             </footer>
                         </blockquote>
-                    </Card.Body>
-                    <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
+                        <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button> 
+                        <Link to={"/edit/" + this.props.movie._id} className="btn btn-primary" > Edit </Link> 
+                    </Card.Body> {/* Button / Link moved inside card to stop buttons expanding the screen*/}
                 </Card>
 
             </div>
